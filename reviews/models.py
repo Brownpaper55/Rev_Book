@@ -19,6 +19,9 @@ class Contributor(models.Model):
     last_names = models.CharField(max_length=20, help_text="Last name of contributor")
     email = models.EmailField(help_text="email of the contributor")
 
+    def number_contribution(self):
+        return self.bookcontributor_set.count()
+    
     def __str__(self):
         return self.last_names
 
@@ -29,6 +32,8 @@ class Book(models.Model):
     isbn = models.CharField(max_length=20, verbose_name="ISBN number of the book")
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     contributor = models.ManyToManyField(Contributor, through="BookContributor")
+    image_field = models.ImageField(null=True, blank=True, upload_to="book_covers/")
+    file_field = models.FileField(null=True, blank=True, upload_to="book_samples/")
 
     def __str__(self):
         return self.title

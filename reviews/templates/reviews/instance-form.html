@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head><title>title</title></head>
+    <body>
+        <form method="post" {% if is_file_upload %} enctype="multipart/form-data" {% endif %}>
+            {% csrf_token %}
+            {{ Form.as_p }}
+            <button type="submit" class="btn btn-primary">
+                {% if instance %}save{% else %}create{% endif %}
+            </button>
+        </form>
+    </body>
+</html>
