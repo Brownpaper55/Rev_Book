@@ -54,6 +54,26 @@
         </nav>
          {% block content %}
         <h1>Welcome to Bookr!</h1>
+        <h4>Recent Reviews</h4>
+        <div id="recent_reviews"></div>
+          <script crossorigin src="https://unpkg.com/react@16/umd/react.
+development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/reactdom.development.js"></script>
+<script crossorigin src="https://unpkg.com/babel-standalone@6/babel.
+min.js"></script>
+<script src="{% static 'recent-reviews.js' %}" type="text/babel"></script>
+
+<script type="text/babel">
+  ReactDOM.render(<RecentReviews url="{% url 'api:review-list' %}?
+   limit=6" />,
+  document.getElementById('recent_reviews')
+   );
+  </script>
+       
+
+
+
+
         {% endblock %}
   <!-- Copyright -->
   <footer class="page-footer font-small blue">
